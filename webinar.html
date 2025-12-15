@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendaftaran Webinar - Jus Buah Asli</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2ecc71;">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">🍃 Jus Buah Asli</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link fw-bold" href="index.html">Beranda</a>
+            <a class="nav-link fw-bold" href="produk.html">Produk</a>
+            <a class="nav-link fw-bold" href="tentang.html">Tentang Kami</a>
+            <a class="nav-link fw-bold" href="kontak.html">Kontak</a>
+            <a class="nav-link fw-bold" href="galeri.html">Galeri</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    </header>
+
+    <main>
+        <h2>Pendaftaran Webinar Promosi Produk</h2>
+        <p>
+            Silakan lengkapi formulir berikut untuk mengikuti webinar Jus Buah Asli.
+        </p>
+
+        <form id="formWebinar">
+            <label for="namaWebinar">Nama Lengkap:</label>
+            <input type="text" id="namaWebinar" placeholder="Minimal 3 karakter" />
+            <span class="error" id="namaWebinarError"></span><br />
+
+            <label for="emailWebinar">Email:</label>
+            <input type="email" id="emailWebinar" placeholder="Tidak boleh yahoo.com" />
+            <span class="error" id="emailWebinarError"></span><br />
+
+            <label for="hpWebinar">Nomor HP:</label>
+            <input type="text" id="hpWebinar" placeholder="Hanya angka" />
+            <span class="error" id="hpWebinarError"></span><br />
+
+            <label for="topikWebinar">Pilih Topik Webinar:</label>
+            <select id="topikWebinar">
+                <option value="">-- Pilih Topik --</option>
+                <option value="branding">
+                    Optimalkan Instagram Untuk Jualan Jus
+                </option>
+                <option value="marketing">Ide Promo Jus Menarik Gen Z</option>
+                <option value="produk">Cara Mengolah Jus Berkualitas</option>
+            </select>
+            <span class="error" id="topikWebinarError"></span><br />
+
+            <label>
+                <input type="checkbox" id="setujuWebinar" />
+                Saya menyetujui syarat & ketentuan
+            </label>
+            <span class="error" id="setujuWebinarError"></span><br />
+
+            <button type="submit">Daftar Webinar</button>
+
+            <p id="successWebinar"></p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Jus Buah Asli. Semua Hak di lindungi.</p>
+    </footer>
+
+    <script>
+        const formWeb = document.getElementById("formWebinar");
+
+        formWeb.addEventListener("submit", function (event) {
+            let valid = true;
+
+            const nama = document.getElementById("namaWebinar");
+            const errorNama = document.getElementById("namaWebinarError");
+            if (nama.value.trim().length < 3) {
+                errorNama.textContent = "Nama minimal 3 karakter.";
+                valid = false;
+            } else {
+                errorNama.textContent = "";
+            }
+
+            const email = document.getElementById("emailWebinar");
+            const errorEmail = document.getElementById("emailWebinarError");
+            const polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!polaEmail.test(email.value)) {
+                errorEmail.textContent = "Format email tidak valid!";
+                valid = false;
+            } else if (email.value.includes("@yahoo.com")) {
+                errorEmail.textContent = "Email yahoo.com tidak diperbolehkan.";
+                valid = false;
+            } else {
+                errorEmail.textContent = "";
+            }
+
+            const hp = document.getElementById("hpWebinar");
+            const errorHP = document.getElementById("hpWebinarError");
+            if (!/^[0-9]+$/.test(hp.value)) {
+                errorHP.textContent = "Nomor HP harus angka.";
+                valid = false;
+            } else {
+                errorHP.textContent = "";
+            }
+
+            const topik = document.getElementById("topikWebinar");
+            const errorTopik = document.getElementById("topikWebinarError");
+            if (topik.value === "") {
+                errorTopik.textContent = "Silakan pilih topik.";
+                valid = false;
+            } else {
+                errorTopik.textContent = "";
+            }
+
+            const setuju = document.getElementById("setujuWebinar");
+            const errorSetuju = document.getElementById("setujuWebinarError");
+            if (!setuju.checked) {
+                errorSetuju.textContent = "Anda harus menyetujui syarat & ketentuan.";
+                valid = false;
+            } else {
+                errorSetuju.textContent = "";
+            }
+
+            if (!valid) {
+                event.preventDefault();
+            } else {
+                const successMsg = document.getElementById("successWebinar");
+                successMsg.textContent =
+                    "Pendaftaran berhasil! Silakan cek email Anda.";
+                formWeb.reset();
+
+                event.preventDefault();
+            }
+        });
+
+        document.getElementById("namaWebinar").addEventListener("blur", function () {
+            const errorNama = document.getElementById("namaWebinarError");
+            if (this.value.trim().length < 3) {
+                errorNama.textContent = "Nama minimal 3 karakter.";
+            } else {
+                errorNama.textContent = "";
+            }
+        });
+
+        document.getElementById("emailWebinar").addEventListener("blur", function () {
+            const errorEmail = document.getElementById("emailWebinarError");
+            const polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!polaEmail.test(this.value)) {
+                errorEmail.textContent = "Format email tidak valid!";
+            } else if (this.value.includes("@yahoo.com")) {
+                errorEmail.textContent = "Email yahoo.com tidak diperbolehkan.";
+            } else {
+                errorEmail.textContent = "";
+            }
+        });
+
+        document.getElementById("hpWebinar").addEventListener("input", function () {
+            const errorHP = document.getElementById("hpWebinarError");
+            if (!/^[0-9]+$/.test(this.value)) {
+                errorHP.textContent = "Nomor HP harus angka.";
+            } else {
+                errorHP.textContent = "";
+            }
+        });
+
+        document.getElementById("topikWebinar").addEventListener("change", function () {
+            const errorTopik = document.getElementById("topikWebinarError");
+            if (this.value === "") {
+                errorTopik.textContent = "Silakan pilih topik.";
+            } else {
+                errorTopik.textContent = "";
+            }
+        });
+
+        document.getElementById("setujuWebinar").addEventListener("change", function () {
+            const errorSetuju = document.getElementById("setujuWebinarError");
+            if (!this.checked) {
+                errorSetuju.textContent =
+                    "Anda harus menyetujui syarat & ketentuan.";
+            } else {
+                errorSetuju.textContent = "";
+            }
+        });
+    </script>
+</body>
+
+</html>
