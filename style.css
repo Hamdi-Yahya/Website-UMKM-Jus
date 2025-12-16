@@ -206,6 +206,22 @@ img {
     border-radius: 5px;
 }
 
+.ig {
+  background-color: rgb(255, 77, 0);
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-webinar {
+  background-color: rgb(0, 255, 149);
+  color: rgb(0, 0, 0);
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
 footer {
   background-color: #2ecc71;
   color: white;
