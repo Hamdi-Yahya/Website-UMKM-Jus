@@ -1,14 +1,5 @@
-alert('Selamat datang di Website Profil UMKM Anda!');
-alert('Halo, selamat datang di website Jus Buah Asli');
-
 const namaUMKM = 'Jus Buah Asli';
 console.log('Nama UMKM:', namaUMKM);
-
-let jumlahProduk = 6;
-console.log('Jumlah produk awal:', jumlahProduk);
-
-jumlahProduk += 1;
-console.log('Setelah penambahan produk baru:', jumlahProduk);
 
 let jusMangga = 10;
 let jusJeruk = 8;
@@ -34,10 +25,6 @@ if (totalProduk > 30) {
 } else {
     console.log('Produksi masih perlu ditingkatkan untuk memenuhi permintaan.');
 }
-
-alert(`UMKM ${namaUMKM} saat ini memiliki total ${totalProduk} botol jus berbagai rasa siap jual!`);
-
-
 
 // INDEX.HTML
 
